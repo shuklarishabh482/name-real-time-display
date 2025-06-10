@@ -1,42 +1,29 @@
 
-import { useState } from 'react';
+import {useState} from 'react';
 import './App.css' ;
 function App(){
-let obj = {
-  name : "" ,
-  email : "" 
+let isShow = true ;
+let [showMore,setShowMore] = useState(isShow);
+let onClickHandler = ()=>{
+       setShowMore((prevShow)=> prevShow ? false:true);
 }
-let [userDetail , setUserDetail] = useState(obj);
-
-let onSubmitHandler = (e)=>{
-e.preventDefault();
-console.log(e);
-console.log(e.target);
-let formList = e.target ;
-let name = formList[0].value;
-let email  = formList[1].value;
-console.log(name,email);
-userDetail.name = name ;
-userDetail.email = email ;
- userDetail = {...userDetail}
-setUserDetail(()=> userDetail)
-}
-console.log(userDetail);
-
 return (
 <>
-<form onSubmit={onSubmitHandler}>
-  <input type='text' placeholder='name'></input>
-  <br></br>
-  <input type='email' placeholder='email'></input>
-  <br></br>
-  <input type='password' placeholder='password'></input>
-  <br></br>
-  <button type='submit' onSubmit={onSubmitHandler}>Submit Details</button>
-</form>
-<h5>Name : {userDetail.name}</h5>
-<h5>Email : {userDetail.email}</h5>
-
+<div>
+{ showMore ? <div> <p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit.  Voluptatibus velit magni quis assumenda totam consequatur 
+  </p>
+ <p>  
+  explicabo expedita ab. Rem unde illo quidem corrupti maiores? Officia modi aliquam dolorum exercitationem laudantium?
+</p></div> : <p>  
+  explicabo expedita ab. Rem unde illo quidem corrupti maiores? Officia modi aliquam dolorum exercitationem laudantium?
+</p>}
+</div>
+{
+showMore ? <button onClick={onClickHandler}>
+    Show Less
+  </button > : <button onClick={onClickHandler}> Show More</button>
+}
 </>
 )
 
